@@ -149,6 +149,10 @@ class Minecraft:
         self.player = CmdPlayer(connection)
         self.events = CmdEvents(connection)
 
+    def controlPlayer(self, name):
+        """Attach player with name to the current session"""
+        return self.conn.send(b"world.controlPlayer", name)
+
     def getBlock(self, *args):
         """Get block (x,y,z) => id:int"""
         return int(self.conn.sendReceive(b"world.getBlock", intFloor(args)))
